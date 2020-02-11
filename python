@@ -1,0 +1,64 @@
+file = open('Turing.txt', 'r')
+text = file.read()
+
+# separate the words
+def tokenize():
+    if text is not None:
+        word = text.lower().split()
+        return word
+    else:
+        return text.lower
+
+
+def map_text(tokens):
+    hash_map = {}
+
+    if tokens is not None:
+        for element in tokens:
+
+            # remove punctuation and replace with whitespace
+            word = element.replace("'", " ")
+            word = word.replace(".", " ")
+
+            # word exist if yes add to frequency if no ignore
+            if word in hash_map:
+                hash_map[word] = hash_map[word] + 1
+            else:
+                hash_map[word] = 1
+
+        return hash_map
+    else:
+        return None
+
+
+# create a list to store the words
+words = tokenize()
+word_list = ['imitation', 'game', 'based', 'on', 'real', 'life', 'story', 'of', 'legendary', 'cryptanalyst',
+             'alan', 'turing', 'film', 'portrays', 'nail-biting', 'race', 'against', 'time', 'by', 'and', 'his',
+             'brilliant', 'team', 'code-breakers', 'code', 'at', 'top-secret', 'government', 'cypher',
+             'school', 'at', 'during', 'darkest', 'days', 'world', 'war', 'true', 'enigma',
+             'was', 'man', 'who', 'cracked', 'behind', 'every', 'is', 'an', 'unlock', 'win', 'the', 'britains',
+             'cypher', 'school', 'bletchley']
+# create a list for the alphabet
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            'v', 'w', 'x', 'y', 'z']
+
+
+# create a dictionary to store words from the list
+map = map_text(words)
+
+# print a title
+print("Word Frequencies in 'Turing.txt': ")
+# print word information
+for word in word_list:
+    print("{0}: {1}".format(word, str(map[word])))
+
+# print a title
+print("Character Frequencies in 'Turing.txt' :")
+# count character frequency
+with open('Turing.txt') as f:
+    # initialize dictionary to store alphabet
+    dic = {}
+    for x in alphabet:
+        dic[x] = text.count(x)
+        print("{0}: {1}".format(x, str(dic[x])))
